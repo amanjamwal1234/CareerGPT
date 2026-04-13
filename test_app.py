@@ -6,12 +6,15 @@ import unittest
 from types import SimpleNamespace
 from unittest.mock import Mock, mock_open, patch
 
-if "gradio" not in sys.modules:
-    fake_gradio = types.ModuleType("gradio")
-    fake_gradio.ChatInterface = Mock()
-    sys.modules["gradio"] = fake_gradio
-
+fake_gradio = types.ModuleType("gradio")
+fake_gradio.ChatInterface = Mock()
+original_gradio = sys.modules.get("gradio")
+sys.modules["gradio"] = fake_gradio
 import app
+if original_gradio is None:
+    sys.modules.pop("gradio", None)
+else:
+    sys.modules["gradio"] = original_gradio
 
 
 def _tool_call(name, arguments, tool_call_id="tool-1"):
