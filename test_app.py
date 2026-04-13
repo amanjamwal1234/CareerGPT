@@ -65,7 +65,7 @@ class TestHelperFunctions(unittest.TestCase):
         mock_push.assert_called_once_with("Recording What is your expected salary?")
 
 
-class TestMeInitialization(unittest.TestCase):
+class TestMeConstructor(unittest.TestCase):
     @patch("app.OpenAI")
     @patch("app.PdfReader")
     def test_init_loads_profile_summary_and_openai_client(self, mock_pdf_reader, mock_openai):
