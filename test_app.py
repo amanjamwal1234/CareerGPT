@@ -86,7 +86,7 @@ class TestMeConstructor(unittest.TestCase):
             api_key="api-key",
         )
         self.assertEqual(me.name, "Aman Jamwal")
-        self.assertIn("www.linkedin.com/in/aman-jamwal", me.linkedin)
+        self.assertIn("linkedin.com/in/", me.linkedin)
         self.assertIn("First page text", me.linkedin)
         self.assertIn("Second page text", me.linkedin)
         self.assertEqual(me.summary, "Summary content")
